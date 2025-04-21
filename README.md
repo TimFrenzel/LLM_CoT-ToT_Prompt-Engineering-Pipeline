@@ -53,12 +53,24 @@ Quantitative evaluation shows that adding retrieval plus ToT branching yields si
 
 <div align="center">
 
-<img src="cot_tot_workflow.jpeg" alt="End-to-End Prompt-Engineering Workflow" width="80%">
+<img src="cot_tot_workflow.jpeg" alt="End-to-End Prompt-Engineering Workflow" width="85%">
 
 </div>
 
 *Figure 1: Comparative workflow illustrating baseline CoT versus the advanced ToT approach enhanced with semantic retrieval.*
 In this workflow visualization, I compare two distinct prompting techniques implemented for GPT-4 to predict COVID-19 severity. The upper baseline approach employs a linear "Chain-of-Thought," where GPT-4 sequentially assesses patient characteristics from a minimal patient summary. The lower, advanced method integrates semantic retrieval—employing Sentence-BERT embeddings and cosine similarity—to select contextually relevant patient cases. This contextual foundation feeds into a "Tree-of-Thought" reasoning approach, where GPT-4 explores multiple, explicitly branched reasoning paths before converging on a final severity classification. These parallel methods were designed to rigorously evaluate how semantic retrieval and structured branching impact clinical decision accuracy, clarity of explanations, and overall reliability in predictive modeling.
+
+---
+### Prompt‑Engineering Concepts  
+
+<div align="center">
+
+<img src="LLM_Reasoning_Methods.jpg" alt="Side‑by‑side summary of six LLM reasoning paradigms" width="85%">
+
+</div>
+
+*Figure 2: Quick‑reference map of the six reasoning paradigms benchmarked in this project (CoT, ToT, SC, SR, FC, HYB).*
+This schematic summarizes the unique workflow logic, strengths, and trade-offs associated with each prompting paradigm evaluated in the pipeline. **Chain-of-Thought (CoT)** offers a lightweight, single-pass approach but lacks deeper exploration. **Tree-of-Thought (ToT)** incorporates branching analysis that captures greater clinical nuance, though it requires additional tokens. **Self-Consistency (SC)** addresses stochastic bias by generating multiple focused outputs followed by majority voting, while **Self-Reflection (SR)** introduces a second reasoning pass to audit and revise the initial chain when needed. **Fact-Checking (FC)** cross-references predictions with guideline-based criteria to reinforce domain validity. The **Hybrid Approach (HYB)** combines the strongest elements of all preceding methods into a single, unified prompt, delivering the most comprehensive—though computationally demanding—severity assessment. Presenting these six paradigms side-by-side clarifies the trade-offs between simplicity, robustness, clinical rigor, and full-coverage reasoning, and serves as a visual guide for interpreting the results that follow.
 
 ---
 
@@ -78,7 +90,7 @@ In this workflow visualization, I compare two distinct prompting techniques impl
 
 </div>
 
-*Figure 2: PCA projection of patient embeddings, showing distinct clusters by severity and the proximity of retrieved exemplars to a query case.*
+*Figure 3: PCA projection of patient embeddings, showing distinct clusters by severity and the proximity of retrieved exemplars to a query case.*
 The PCA visualization of patient embeddings clearly shows semantic clustering that aligns with COVID-19 severity labels. Retrieved exemplars, identified in relation to a query patient case, are positioned nearby in the embedding space, indicating that semantic similarity was effectively captured. Embedding-based retrieval, which uses Sentence-BERT and cosine similarity, selected semantically relevant cases that directly support the advanced "Tree-of-Thought" approach. This method contextualizes reasoning prompts with clinically similar patient profiles, as confirmed by the distinct severity-based clustering patterns. The embeddings were used to quantitatively validate semantic similarity, highlighting the technical effectiveness of embedding-driven few-shot exemplar selection.
 
 3. **Prompt Construction**
@@ -102,7 +114,7 @@ The PCA visualization of patient embeddings clearly shows semantic clustering th
 
 </div>
 
-*Figure 3: Distribution of COVID-19 severity classes within the synthetic dataset*
+*Figure 4: Distribution of COVID-19 severity classes within the synthetic dataset*
 The chart clearly illustrates the pronounced class imbalance in the synthetic cohort—about 63% Mild, 24% Moderate, 10% Severe, and under 3% Critical—which presents a clear risk of majority-class bias. To counter this skew, I applied a two-part strategy: data-side weighting using inverse-frequency sample weights for evaluation and auxiliary ML baselines, and prompt-side balancing. The semantic-retrieval module was constrained to include at least one Severe and one Critical exemplar in each few-shot prompt, while limiting Mild examples to no more than 50% of the context. Candidates were re-ranked by severity following initial cosine-similarity scoring. This approach raised the Critical-class F1 from 0.12 to 0.36 in Chain-of-Thought prompts, and to 0.54 when combined with Tree-of-Thought reasoning—showing that severity-aware retrieval, rather than brute oversampling, significantly improves high-risk predictions without increasing token costs.
 
 ### Age vs Severity
@@ -113,7 +125,7 @@ The chart clearly illustrates the pronounced class imbalance in the synthetic co
 
 </div>
 
-*Figure 4: Box plot illustrating the positive correlation between patient age and COVID-19 severity.*
+*Figure 5: Box plot illustrating the positive correlation between patient age and COVID-19 severity.*
 The box plot clearly demonstrates a correlation between patient age and COVID-19 severity classification, with median ages increasing across severity levels. Mild cases are concentrated at younger median ages (around 35 years), while critical cases are skewed toward older individuals (median approximately 75 years). These demographic patterns align with clinical expectations and emphasize the importance of age in risk-stratification models.
 
 ### Comorbidity Spotlight – Diabetes
@@ -124,7 +136,7 @@ The box plot clearly demonstrates a correlation between patient age and COVID-19
 
 </div>
 
-*Figure 5: Comparative severity distributions for patients with and without diabetes, demonstrating the impact of comorbidity.*
+*Figure 6: Comparative severity distributions for patients with and without diabetes, demonstrating the impact of comorbidity.*
 These comparative pie charts highlight the significant and known impact of diabetes as a comorbid condition on COVID-19 severity distributions. Patients with diabetes show a noticeably higher proportion of moderate, severe, and critical classifications compared to those without the condition. In particular, critical and severe cases increase sharply among diabetic patients, underscoring diabetes as a key clinical predictor of severe COVID-19 outcomes.
 
 ### Patient-Journey Illustration
@@ -135,7 +147,7 @@ These comparative pie charts highlight the significant and known impact of diabe
 
 </div>
 
-*Figure 6: Temporal visualization of key clinical metrics for a representative moderate-severity patient journey.*
+*Figure 7: Temporal visualization of key clinical metrics for a representative moderate-severity patient journey.*
 I created this timeline for illustrative purposes to show that the patient's clinical course reflects moderate-severity progression over a 21-day hospitalization period following a COVID-19 diagnosis. Key physiological metrics indicate relatively stable oxygen saturation around 85–90%, elevated but controlled C-reactive protein levels, moderately increased respiratory rates, and steady body-temperature trends. These laboratory indicators align with clinical expectations for moderate COVID-19 severity—hospitalization without signs of critical deterioration.
 
 ---
@@ -156,7 +168,7 @@ I created this timeline for illustrative purposes to show that the patient's cli
 
 </div>
 
-*Figure 7: Aggregate classification metrics (Accuracy, Precision, Recall, F1-score) for six prompting strategies.*
+*Figure 8: Aggregate classification metrics (Accuracy, Precision, Recall, F1-score) for six prompting strategies.*
 The bar-chart shows that adding structure and context yields major performance gains. **Tree-of-Thought (ToT) with semantic retrieval** leads every metric—achieving ~0.90 accuracy and an F1 of 0.62—more than double the baseline Chain-of-Thought (CoT) F1 (0.30). Self-Consistency and Fact-Checking deliver moderate boosts by ensemble voting and guideline verification, respectively, while Self-Reflection struggles to recover initial reasoning errors. The Hybrid stack recovers accuracy but loses precision, illustrating that simply stacking modules can dilute decision quality. Overall, ToT provides the most favorable balance of predictive power and methodological clarity.
 
 ---
@@ -169,7 +181,7 @@ The bar-chart shows that adding structure and context yields major performance g
 
 </div>
 
-*Figure 8: Per-class confusion matrices highlighting where each method succeeds or fails across Mild, Moderate, Severe, and Critical cases.* The confusion grids reveal error patterns that explain the summary metrics above. CoT consistently downgrades Moderate cases to Mild (8 out of 17) and fails to identify any Severe patients, highlighting its limited clinical reliability. In contrast, **ToT significantly reduces cross-class leakage** by correctly labeling 17 out of 18 Moderate cases and 3 out of 5 Severe cases, without misclassifying any Critical patients. Self-Consistency continues to misclassify borderline Moderate and Severe cases, showing that voting strategies cannot compensate for weak initial reasoning. Self-Reflection tends to over-correct, frequently switching between Mild and Moderate classifications without improving recognition of high-risk categories. Fact-Checking reduces false-positive Severe predictions, reflecting the influence of guideline enforcement, while the Hybrid method skews heavily toward Mild due to the compounded effects of multiple heuristics on an imbalanced dataset. This improved ability to distinguish high-risk cases is reflected in the Critical-class F1 score, which rose to 0.54 for ToT as mentioned previously. These matrices clearly demonstrate ToT's effectiveness in avoiding dangerous misclassification of high-risk patients.
+*Figure 9: Per-class confusion matrices highlighting where each method succeeds or fails across Mild, Moderate, Severe, and Critical cases.* The confusion grids reveal error patterns that explain the summary metrics above. CoT consistently downgrades Moderate cases to Mild (8 out of 17) and fails to identify any Severe patients, highlighting its limited clinical reliability. In contrast, **ToT significantly reduces cross-class leakage** by correctly labeling 17 out of 18 Moderate cases and 3 out of 5 Severe cases, without misclassifying any Critical patients. Self-Consistency continues to misclassify borderline Moderate and Severe cases, showing that voting strategies cannot compensate for weak initial reasoning. Self-Reflection tends to over-correct, frequently switching between Mild and Moderate classifications without improving recognition of high-risk categories. Fact-Checking reduces false-positive Severe predictions, reflecting the influence of guideline enforcement, while the Hybrid method skews heavily toward Mild due to the compounded effects of multiple heuristics on an imbalanced dataset. This improved ability to distinguish high-risk cases is reflected in the Critical-class F1 score, which rose to 0.54 for ToT as mentioned previously. These matrices clearly demonstrate ToT's effectiveness in avoiding dangerous misclassification of high-risk patients.
 
 ---
 
@@ -181,7 +193,7 @@ The bar-chart shows that adding structure and context yields major performance g
 
 </div>
 
-*Figure 9: Comparison of token consumption and cost-efficiency (Accuracy per 1k tokens) across prompting strategies.*
+*Figure 10: Comparison of token consumption and cost-efficiency (Accuracy per 1k tokens) across prompting strategies.*
 Analyzing computational resource usage, this plot highlights key efficiency trade-offs across prompting methods. Tree-of-Thought uses more tokens than basic Chain-of-Thought but delivers significantly higher accuracy per token, resulting in a stronger cost-to-performance ratio. In contrast, **Self-Consistency consumes substantially more tokens without corresponding performance gains**, revealing diminishing returns. The Hybrid approach, despite combining several enhancements, offers only moderate improvements while requiring greater computational resources. These findings show that although advanced prompting methods demand more tokens, well-structured reasoning—particularly Tree-of-Thought—justifies the added cost through clearly improved predictive outcomes.
 
 ---
