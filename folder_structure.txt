@@ -1,0 +1,176 @@
+Folder Structure of GitHub "https://github.com/TimFrenzel/LLM_CoT-ToT_Prompt-Engineering-Pipeline"
+├── .git
+│   ├── COMMIT_EDITMSG
+│   ├── config
+│   ├── description
+│   ├── FETCH_HEAD
+│   ├── HEAD
+│   ├── hooks
+│   │   ├── applypatch-msg.sample
+│   │   ├── commit-msg.sample
+│   │   ├── fsmonitor-watchman.sample
+│   │   ├── post-update.sample
+│   │   ├── pre-applypatch.sample
+│   │   ├── pre-commit.sample
+│   │   ├── pre-merge-commit.sample
+│   │   ├── pre-push.sample
+│   │   ├── pre-rebase.sample
+│   │   ├── pre-receive.sample
+│   │   ├── prepare-commit-msg.sample
+│   │   ├── push-to-checkout.sample
+│   │   ├── sendemail-validate.sample
+│   │   └── update.sample
+│   ├── index
+│   ├── info
+│   │   └── exclude
+│   ├── logs
+│   │   ├── HEAD
+│   │   └── refs
+│   │       ├── heads
+│   │       │   └── main
+│   │       └── remotes
+│   │           └── origin
+│   │               ├── HEAD
+│   │               └── main
+│   ├── objects
+│   │   ├── 07
+│   │   │   └── 841d3ea2b883afe599f30373362ad03709d8ca
+│   │   ├── 0c
+│   │   │   └── 1972f8d9102501b8d68e079951731f01bca981
+│   │   ├── 11
+│   │   │   └── ea84ace50790b55a3199ebb4029926aab44fdc
+│   │   ├── 13
+│   │   │   └── b3d6257da6faa93b4392b2ab24d61fddb66f0f
+│   │   ├── 15
+│   │   │   └── 2a979532dc122c127f8a297b8f674bc7a661ec
+│   │   ├── 1a
+│   │   │   └── 0f885cca90626a6c55ce48821a61ddffd2dd50
+│   │   ├── 1f
+│   │   │   └── dadd285a2e05a0dc205fc7b6157cb0fe946bba
+│   │   ├── 28
+│   │   │   ├── 201614f28f660a49501c12e8653a59499bade7
+│   │   │   └── 70ab346f9219e2f9503967607439a3708f840a
+│   │   ├── 29
+│   │   │   └── 479951fe196237b8fce07f78cdc44532faade0
+│   │   ├── 2e
+│   │   │   └── 5e0995a90b281f08d816e19ccdac6b629d9fa8
+│   │   ├── 44
+│   │   │   └── 874b72f13be8213a3f12b5d9ad337dc5c0dd7b
+│   │   ├── 47
+│   │   │   └── 83597f44507c359c49804331357e1ea1ad395c
+│   │   ├── 4c
+│   │   │   ├── 9ae0beea414ad369f24277a64d64213f2b64e6
+│   │   │   └── bd45afdeef99e5c0cb7f1fd6cef88096ebec35
+│   │   ├── 58
+│   │   │   └── 9f301ec081f5fc6f4f28d2f5a528c06d0a73a4
+│   │   ├── 5c
+│   │   │   └── 4f97361d1fbae3f757c9efa5dae5bd667982a9
+│   │   ├── 60
+│   │   │   └── 9d05ef95a6a40746130f7b77ae583b893bb6b6
+│   │   ├── 63
+│   │   │   └── c7401f4b79c259f60b8660697f574915d8fccb
+│   │   ├── 68
+│   │   │   └── bc17f9ff2104a9d7b6777058bb4c343ca72609
+│   │   ├── 77
+│   │   │   └── fbf5ce0e3725c6274c1aa13856b158f0d4605c
+│   │   ├── 88
+│   │   │   └── 559a0f8d9a00107050863a765683b3ab5a872a
+│   │   ├── 8d
+│   │   │   └── 290ddc150a2ec168c6b1ef89ea6294479849d4
+│   │   ├── 98
+│   │   │   └── d158a46745b4800036d4cf64bbc63e0ece3e50
+│   │   ├── a1
+│   │   │   └── b0f0015c853cfd0d742f5a86861fae328dcf05
+│   │   ├── a2
+│   │   │   └── f460ce41aaa4e5fc7930e7189dd6241d7d1ffc
+│   │   ├── c6
+│   │   │   └── 523a3ecc9b413ddfebdefde45c2d2735e2cbdb
+│   │   ├── c7
+│   │   │   └── 3db0393175cf8c0d2008d7c32095227467b5ad
+│   │   ├── c9
+│   │   │   └── 468ee86ce92093741911da2d02302bc42e98e0
+│   │   ├── cb
+│   │   │   └── 233dc0a39731584a0d9ab2171e943ca3469e6a
+│   │   ├── cf
+│   │   │   └── 8550a0faacc91a2a2412ef2de967aae856ff1d
+│   │   ├── d8
+│   │   │   └── 96ff72f3326081525759b4b6292b190de0341e
+│   │   ├── db
+│   │   │   ├── 8e99053c3e7a147cd45746dd6f5034a1a1cb26
+│   │   │   └── a6bc16990c744c51984e1f1a4c630e6e647bc5
+│   │   ├── df
+│   │   │   └── e0770424b2a19faf507a501ebfc23be8f54e7b
+│   │   ├── e0
+│   │   │   └── 12a1a26f34a08f6167741c5074f1dbdeb498cd
+│   │   ├── e5
+│   │   │   └── 83a683584a4927b389ff537ce39fe318684e38
+│   │   ├── ee
+│   │   │   └── 0b1881544acd505103ae3bba5f413e00a49051
+│   │   ├── f5
+│   │   │   └── df58ba5ece02fe636159169dca2b2e34adce7a
+│   │   ├── ff
+│   │   │   └── a1366b0319927964b88f32c3e135e3aa2a4c58
+│   │   ├── info
+│   │   └── pack
+│   └── refs
+│       ├── heads
+│       │   └── main
+│       ├── remotes
+│       │   └── origin
+│       │       ├── HEAD
+│       │       └── main
+│       └── tags
+├── .gitattributes
+├── .gitignore
+├── cot_tot_workflow.jpeg
+├── LICENSE
+├── README.md
+├── results
+│   ├── EDA
+│   │   ├── age_by_severity.png
+│   │   ├── any_antibiotic_severity_pie_comparison.png
+│   │   ├── body_temperature_by_severity.png
+│   │   ├── covid19_severity_distribution.png
+│   │   ├── crp_by_severity.png
+│   │   ├── diastolic_bp_by_severity.png
+│   │   ├── final_covid19_labeled.csv
+│   │   ├── gender_by_severity.png
+│   │   ├── had_recent_flu_vax_severity_pie_comparison.png
+│   │   ├── has_diabetes_careplan_severity_pie_comparison.png
+│   │   ├── has_diabetes_severity_pie_comparison.png
+│   │   ├── has_drug_allergy_severity_pie_comparison.png
+│   │   ├── has_hypertension_careplan_severity_pie_comparison.png
+│   │   ├── has_hypertension_severity_pie_comparison.png
+│   │   ├── has_infect_disease_careplan_severity_pie_comparison.png
+│   │   ├── has_nut_allergy_severity_pie_comparison.png
+│   │   ├── has_pollen_allergy_severity_pie_comparison.png
+│   │   ├── med_count_by_severity.png
+│   │   ├── oxygen_saturation_by_severity.png
+│   │   ├── patient_journeys
+│   │   │   ├── patient_journey_critical.png
+│   │   │   ├── patient_journey_mild.png
+│   │   │   ├── patient_journey_moderate.png
+│   │   │   └── patient_journey_severe.png
+│   │   ├── serum_glucose_by_severity.png
+│   │   ├── systolic_bp_by_severity.png
+│   │   ├── total_ambulatory_by_severity.png
+│   │   ├── total_emergency_by_severity.png
+│   │   ├── total_encounters_by_severity.png
+│   │   └── total_wellness_by_severity.png
+│   ├── final_covid19_labeled.csv
+│   ├── LLM_inference
+│   │   ├── confusion_matrix_grid.png
+│   │   ├── f1_by_severity_comparison.png
+│   │   ├── overall_performance_comparison.png
+│   │   ├── reasoning_length_test_evaluation_cot_subset_150_mixed.png
+│   │   ├── reasoning_length_test_evaluation_tot_subset_150_mixed.png
+│   │   ├── token_efficiency_comparison.png
+│   │   └── token_usage_comparison.png
+│   └── semantic_retrieval
+│       ├── pca_scatter_retrieval_enhanced.png
+│       ├── pca_visualization - Copy.png
+│       ├── pca_visualization.png
+│       ├── similarity_histogram - Copy.png
+│       ├── similarity_histogram.png
+│       └── similarity_histogram_enhanced.png
+└── scripts
